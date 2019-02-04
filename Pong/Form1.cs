@@ -42,7 +42,7 @@ namespace Pong
         //ball directions, speed, and rectangle
         Boolean ballMoveRight = true;
         Boolean ballMoveDown = true;
-        const int BALL_SPEED = 4;
+        int BALL_SPEED = 4;
         Rectangle ball;
 
         //paddle speeds and rectangles
@@ -144,9 +144,13 @@ namespace Pong
             p2.Y = this.Height / 2 - p2.Height / 2;
 
             // TODO set Width and Height of ball
-            // TODO set starting X position for ball to middle of screen, (use this.Width and ball.Width)
-            // TODO set starting Y position for ball to middle of screen, (use this.Height and ball.Height)
+            ball.Width = ball.Height = 8;
 
+            // TODO set starting X position for ball to middle of screen, (use this.Width and ball.Width)
+            ball.X = this.Width / 2 - ball.Width;
+
+            // TODO set starting Y position for ball to middle of screen, (use this.Height and ball.Height)
+            ball.Y = this.Height / 2 - ball.Height;
         }
 
         /// <summary>
@@ -158,6 +162,8 @@ namespace Pong
             #region update ball position
 
             // TODO create code to move ball either left or right based on ballMoveRight and using BALL_SPEED
+            if (ballMoveRight == true) { ball.X = ball.X + BALL_SPEED; }
+            if (ballMoveRight == true) { ball.Y = ball.Y + BALL_SPEED; }
 
             // TODO create code move ball either down or up based on ballMoveDown and using BALL_SPEED
 
@@ -165,16 +171,13 @@ namespace Pong
 
             #region update paddle positions
 
-            if (aKeyDown == true && p1.Y > 0)
-            {
-                // TODO create code to move player 1 paddle up using p1.Y and PADDLE_SPEED
-            }
+            if (aKeyDown == true && p1.Y > 0) { p1.Y = p1.Y - PADDLE_SPEED; }
 
-            // TODO create an if statement and code to move player 1 paddle down using p1.Y and PADDLE_SPEED
+            if (zKeyDown == true && p1.Y > 0) { p1.Y = p1.Y + PADDLE_SPEED; }
 
-            // TODO create an if statement and code to move player 2 paddle up using p2.Y and PADDLE_SPEED
+            if (jKeyDown == true && p2.Y > 0) { p2.Y = p2.Y - PADDLE_SPEED; }
 
-            // TODO create an if statement and code to move player 2 paddle down using p2.Y and PADDLE_SPEED
+            if (mKeyDown == true && p2.Y > 0) { p2.Y = p2.Y + PADDLE_SPEED; }
 
             #endregion
 
@@ -189,6 +192,7 @@ namespace Pong
             // If true use ballMoveDown down boolean to change direction
 
             #endregion
+            //if (ball.IntersectsWith()) { }
 
             #region ball collision with paddles
 
@@ -248,8 +252,11 @@ namespace Pong
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // TODO draw paddles using FillRectangle
+            e.Graphics.FillRectangle(drawBrush, p1.X, p1.Y, p1.Width, p1.Height);
+            e.Graphics.FillRectangle(drawBrush, p2.X, p2.Y, p2.Width, p2.Height);
 
             // TODO draw ball using FillRectangle
+            e.Graphics.FillRectangle(drawBrush, ball.X, ball.Y, ball.Width, ball.Height);
 
             // TODO draw scores to the screen using DrawString
         }
