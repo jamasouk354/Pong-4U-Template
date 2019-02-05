@@ -221,13 +221,14 @@ namespace Pong
             {
                 // TODO
                 scoreSound.Play();
+                player2Score++;
                 // --- play score sound
                 // --- update player 2 score
 
                 // TODO use if statement to check to see if player 2 has won the game. If true run 
                 if (player1Score == gameWinScore && player2Score == gameWinScore)
                 {
-                    GameOver();
+                    //GameOver();
                 }
                 // GameOver method. Else change direction of ball and call SetParameters method.
 
