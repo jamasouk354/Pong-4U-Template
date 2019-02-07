@@ -26,7 +26,9 @@ namespace Pong
         #region global values
 
         //graphics objects for drawing
-        SolidBrush drawBrush = new SolidBrush(Color.White);
+        SolidBrush reg = new SolidBrush(Color.White);
+        SolidBrush p1Color = new SolidBrush(Color.White);
+        SolidBrush p2Color = new SolidBrush(Color.White);
 
         Font drawFont = new Font("Courier New", 10);
 
@@ -239,20 +241,17 @@ namespace Pong
             startLabel.Visible = true;
             startLabel.Text = winner + "\nDo you want to play again? Press 'Space'";
             this.Refresh();
-            Thread.Sleep(2000);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(drawBrush, p1.X, p1.Y, p1.Width, p1.Height);
-            e.Graphics.FillRectangle(drawBrush, p2.X, p2.Y, p2.Width, p2.Height);
+            e.Graphics.FillRectangle(p1Color, p1.X, p1.Y, p1.Width, p1.Height);
+            e.Graphics.FillRectangle(p2Color, p2.X, p2.Y, p2.Width, p2.Height);
+            e.Graphics.FillRectangle(reg, ball.X, ball.Y, ball.Width, ball.Height);
 
-            // TODO draw ball using FillRectangle
-            e.Graphics.FillRectangle(drawBrush, ball.X, ball.Y, ball.Width, ball.Height);
-
-            // TODO draw scores to the screen using DrawString
-            e.Graphics.DrawString(player1Score + "", drawFont, drawBrush, 20, 20);
-            e.Graphics.DrawString(player2Score + "", drawFont, drawBrush, this.Width - 35, 20);
+            //Score
+            e.Graphics.DrawString(player1Score + "", drawFont, reg, 20, 20);
+            e.Graphics.DrawString(player2Score + "", drawFont, reg, this.Width - 35, 20);
         }
     }
 }
