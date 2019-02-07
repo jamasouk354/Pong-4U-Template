@@ -193,7 +193,7 @@ namespace Pong
 
             #region ball collision with paddles
             randColor = randGen.Next(0, 255);
-            // TODO create if statment that checks p1 collides with ball and if it does
+
             if (p1.IntersectsWith(ball)) { collisionSound.Play(); ballMoveRight = true; p1Side.Color = Color.FromArgb(randColor, randColor, 0, 0); }
 
             if (p2.IntersectsWith(ball)) { collisionSound.Play(); ballMoveRight = false; p2Side.Color = Color.FromArgb(randColor, randColor, 0, 0); }
