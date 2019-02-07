@@ -237,8 +237,9 @@ namespace Pong
 
             gameUpdateLoop.Stop();
             startLabel.Visible = true;
-            startLabel.Text = "Do you want to play again? Press 'Space'\nOr 'n' to Exit";
+            startLabel.Text = winner + "\nDo you want to play again? Press 'Space'";
             this.Refresh();
+            Thread.Sleep(2000);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
