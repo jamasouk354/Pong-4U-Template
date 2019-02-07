@@ -27,6 +27,8 @@ namespace Pong
 
         //graphics objects for drawing
         SolidBrush reg = new SolidBrush(Color.White);
+        SolidBrush p1Side = new SolidBrush(Color.Black);
+        SolidBrush p2Side = new SolidBrush(Color.Black);
 
         Font drawFont = new Font("Courier New", 10);
 
@@ -55,6 +57,8 @@ namespace Pong
         int player2Score = 0;
         int gameWinScore = 2;  // number of points needed to win game
 
+        Random randGen = new Random();
+        int randColor = 0;
         #endregion
 
         public Form1()
@@ -188,11 +192,11 @@ namespace Pong
             #endregion            
 
             #region ball collision with paddles
-
+            randColor = randGen.Next(0, 255);
             // TODO create if statment that checks p1 collides with ball and if it does
-            if (p1.IntersectsWith(ball)) { collisionSound.Play(); ballMoveRight = true; }
+            if (p1.IntersectsWith(ball)) { collisionSound.Play(); ballMoveRight = true; p1Side.Color = Color.FromArgb(randColor, randColor, 0, 0); }
 
-            if (p2.IntersectsWith(ball)) { collisionSound.Play(); ballMoveRight = false; }
+            if (p2.IntersectsWith(ball)) { collisionSound.Play(); ballMoveRight = false; p2Side.Color = Color.FromArgb(randColor, randColor, 0, 0); }
 
             /*  ENRICHMENT
              *  Instead of using two if statments as noted above see if you can create one
@@ -208,6 +212,7 @@ namespace Pong
                 scoreSound.Play();
                 player2Score++;
 
+                p1Side.Color = Color.FromArgb(randColor, randColor, randColor, randColor);
                 if (player2Score == gameWinScore) { GameOver("Player 2 Wins!"); }
                 else { ballMoveRight = true; }
             }
@@ -217,6 +222,7 @@ namespace Pong
                 scoreSound.Play();
                 player1Score++;
 
+                p2Side.Color = Color.FromArgb(randColor, randColor, randColor, randColor);
                 if (player1Score == gameWinScore) { GameOver("Player 1 Wins!"); }
                 else { ballMoveRight = false; }
             }
@@ -237,12 +243,16 @@ namespace Pong
 
             gameUpdateLoop.Stop();
             startLabel.Visible = true;
+            startLabel.BackColor = Color.Transparent;
             startLabel.Text = winner + "\nDo you want to play again? Press 'Space'";
             this.Refresh();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.FillRectangle(p1Side, 0, 0, this.Width / 2, this.Height);
+            e.Graphics.FillRectangle(p2Side, this.Width / 2, 0, this.Width / 2, this.Height);
+
             e.Graphics.FillRectangle(reg, p1.X, p1.Y, p1.Width, p1.Height);
             e.Graphics.FillRectangle(reg, p2.X, p2.Y, p2.Width, p2.Height);
             e.Graphics.FillRectangle(reg, ball.X, ball.Y, ball.Width, ball.Height);
