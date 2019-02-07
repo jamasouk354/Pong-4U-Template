@@ -27,8 +27,6 @@ namespace Pong
 
         //graphics objects for drawing
         SolidBrush reg = new SolidBrush(Color.White);
-        SolidBrush p1Color = new SolidBrush(Color.White);
-        SolidBrush p2Color = new SolidBrush(Color.White);
 
         Font drawFont = new Font("Courier New", 10);
 
@@ -245,8 +243,8 @@ namespace Pong
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(p1Color, p1.X, p1.Y, p1.Width, p1.Height);
-            e.Graphics.FillRectangle(p2Color, p2.X, p2.Y, p2.Width, p2.Height);
+            e.Graphics.FillRectangle(reg, p1.X, p1.Y, p1.Width, p1.Height);
+            e.Graphics.FillRectangle(reg, p2.X, p2.Y, p2.Width, p2.Height);
             e.Graphics.FillRectangle(reg, ball.X, ball.Y, ball.Width, ball.Height);
 
             //Score
