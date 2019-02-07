@@ -1,7 +1,7 @@
 ﻿/*
  * Description:     A basic PONG simulator
- * Author:           
- * Date:            
+ * Author: JAMAL SOUKPHACHANH           
+ * Date: 2019-02-07            
  */
 
 #region libraries
