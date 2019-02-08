@@ -49,7 +49,7 @@ namespace Pong
         Rectangle ball;
 
         //paddle speeds and rectangles
-        const int PADDLE_SPEED = 8;
+        const int PADDLE_SPEED = 50;
         Rectangle p1, p2;
 
         //player and game scores
@@ -146,7 +146,7 @@ namespace Pong
             p2.X = this.Width - PADDLE_EDGE - p2.Width;
             p2.Y = this.Height / 2 - p2.Height / 2;
 
-            ball.Width = ball.Height = 8;
+            ball.Width = ball.Height = 200;
             ball.X = this.Width / 2 - ball.Width / 2;
             ball.Y = this.Height / 2 - ball.Height / 2;
         }
@@ -192,16 +192,11 @@ namespace Pong
             #endregion            
 
             #region ball collision with paddles
-            randColor = randGen.Next(0, 255);
+            randColor = randGen.Next(0, 150);
 
             if (p1.IntersectsWith(ball)) { collisionSound.Play(); ballMoveRight = true; p1Side.Color = Color.FromArgb(randColor, randColor, 0, 0); }
 
             if (p2.IntersectsWith(ball)) { collisionSound.Play(); ballMoveRight = false; p2Side.Color = Color.FromArgb(randColor, randColor, 0, 0); }
-
-            /*  ENRICHMENT
-             *  Instead of using two if statments as noted above see if you can create one
-             *  if statement with multiple conditions to play a sound and change direction
-             */
 
             #endregion
 
